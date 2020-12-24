@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -11,12 +10,16 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        // backgroundColor: Colors.red,
+        backgroundColor: Colors.white,
         title: Center(
-          child: Text('GEOGRAPHY LESSON',
+          child: Text(
+          'GEOGRAPHY LESSON',
           style: TextStyle(
-              letterSpacing: 5)),
-        )
+              letterSpacing: 0,
+              color: Colors.black
+            )
+          ),
+        ),
       ),
       body: SafeArea(
         child: Column(children: [
@@ -29,8 +32,8 @@ class _HomeState extends State<Home> {
                 width: 100,
                 child: RaisedButton(
                   textColor: Colors.white,
-                  color: Colors.blue[300],
-                  child: Text('countries', style: TextStyle(fontSize: 16),),
+                  color: Colors.blue[500],
+                  child: Text('COUNTRIES', style: TextStyle(fontSize: 12),),
                   onPressed: (){},
                 )
               ),
@@ -43,7 +46,7 @@ class _HomeState extends State<Home> {
                   child: RaisedButton(
                     textColor: Colors.white,
                     color: Colors.blue[500],
-                    child: Text('capitals', style: TextStyle(fontSize: 16),),
+                    child: Text('CAPITALS', style: TextStyle(fontSize: 12),),
                     onPressed: (){},
                   )
               ),
@@ -55,8 +58,8 @@ class _HomeState extends State<Home> {
                   width: 100,
                   child: RaisedButton(
                     textColor: Colors.white,
-                    color: Colors.blue[700],
-                    child: Text('flags', style: TextStyle(fontSize: 16),),
+                    color: Colors.blue[500],
+                    child: Text('FLAGS', style: TextStyle(fontSize: 12),),
                     onPressed: (){},
                   )
               ),
@@ -83,7 +86,7 @@ class _HomeState extends State<Home> {
               child: RaisedButton(
                 textColor: Colors.white,
                 color: Colors.redAccent,
-                child: Text('test', style: TextStyle(fontSize: 16),),
+                child: Text('TEST', style: TextStyle(fontSize: 12),),
                 onPressed: (){},
               )
           ),
