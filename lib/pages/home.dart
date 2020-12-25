@@ -1,22 +1,18 @@
 import 'package:flutter/material.dart';
 
-class Home extends StatefulWidget {
-  @override
-  _HomeState createState() => _HomeState();
-}
-
-class _HomeState extends State<Home> {
+class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.black,
         title: Center(
           child: Text(
           'GEOGRAPHY LESSON',
           style: TextStyle(
               letterSpacing: 0,
-              color: Colors.black
+              color: Colors.white
             )
           ),
         ),
@@ -31,10 +27,11 @@ class _HomeState extends State<Home> {
                 height: 80,
                 width: 100,
                 child: RaisedButton(
-                  textColor: Colors.white,
-                  color: Colors.blue[500],
+                  color: Colors.white,
                   child: Text('COUNTRIES', style: TextStyle(fontSize: 12),),
-                  onPressed: (){},
+                  onPressed: (){
+                    Navigator.pushNamed(context, '/countries');
+                  },
                 )
               ),
               SizedBox(
@@ -44,8 +41,8 @@ class _HomeState extends State<Home> {
                   height: 80,
                   width: 100,
                   child: RaisedButton(
-                    textColor: Colors.white,
-                    color: Colors.blue[500],
+                    textColor: Colors.blue,
+                    color: Colors.white,
                     child: Text('CAPITALS', style: TextStyle(fontSize: 12),),
                     onPressed: (){},
                   )
@@ -57,8 +54,8 @@ class _HomeState extends State<Home> {
                   height: 80,
                   width: 100,
                   child: RaisedButton(
-                    textColor: Colors.white,
-                    color: Colors.blue[500],
+                    textColor: Colors.green,
+                    color: Colors.white,
                     child: Text('FLAGS', style: TextStyle(fontSize: 12),),
                     onPressed: (){},
                   )
@@ -71,6 +68,7 @@ class _HomeState extends State<Home> {
           ),
             Container(
               height: 300,
+              width: 340,
               decoration: BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage('assets/images/world.jpg')
@@ -85,7 +83,7 @@ class _HomeState extends State<Home> {
               width: 100,
               child: RaisedButton(
                 textColor: Colors.white,
-                color: Colors.redAccent,
+                color: Colors.red,
                 child: Text('TEST', style: TextStyle(fontSize: 12),),
                 onPressed: (){},
               )
