@@ -10,25 +10,33 @@ class CountryList extends StatefulWidget {
 class _CountryListState extends State<CountryList> {
 
 List<Country> countryList = [
-    Country ('Argentina', 'South America', 'Buenos Aires'),
-    Country ('Brazil', 'South America', 'Brasilia'),
-    Country ('Cambodia', 'Asia', 'Phnom Penh'),
-    Country ('Canada', 'North America', 'Ottawa'),
-    Country ('China', 'Asia', 'Peking'),
-    Country ('Finnland', 'Europe', 'Helsinki'),
-    Country ('France', 'Europe','Paris'),
-    Country ('Germany', 'Europe','Berlin'),
-    Country ('Ivory Coast', 'Africa', 'Yamoussoukro'),
-    Country ('Japon', 'Asia', 'Tokyo'),
-    Country ('Mali', 'Africa', 'Bamako'),
-    Country ('Mongolia', 'Asia', 'UlaanBaatar'),
-    Country ('Norway', 'Europe', 'Oslo'),
-    Country ('Portugal','Europe', 'Lisbon'),
-    Country ('Russia', 'Europe', 'Moscow'),
-    Country ('Sweden','Europe', 'Stockholm'),
-    Country ('Togo', 'Africa', 'Lome'),
-    Country ('USA', 'North America', 'Washington DC'),
-    Country ('Vietnam', 'Asia', 'Hanoi'),
+  Country ('Afghanistan', 'Asie', 'Kaboul'),
+  Country ('Afrique du Sud', 'Afrique', 'Pretoria'),
+  Country ('Albanie', 'Europe', 'Tirana'),
+  Country ('Algérie', 'Afrique', 'Alger'),
+  Country ('Allemagne', 'Europe', 'Berlin'),
+  Country ('Andorre', 'Europe', 'Andorre-la-Vieille'),
+  Country ('Angola', 'Afrique','Luanda'),
+  Country ('Antigua-et-Barbuda', 'Océan Altantique', 'Saint Johns'),
+  Country ('Arabie saoudite', 'Asie', 'Riyad'),
+  Country ('Argentine', 'Amérique du Sud', 'Buenos Aires'),
+  Country ('Arménie', 'Asie', 'Erevan'),
+  Country ('Australie', 'Océanie', 'Canberra'),
+  Country ('Autriche','Europe', 'Vienne'),
+  Country ('Azerbaïdjan', 'Asie', 'Bakou'),
+  Country ('Bahamas','Océan Altantique', 'Nassau'),
+  Country ('Bahreïn', 'Asie', 'Manama'),
+  Country ('Bangladesh', 'Asie', 'Dacca'),
+  Country ('Barbade', 'Océan Altantique', 'Bridgetown'),
+  Country ('Belgique', 'Europe','Bruxelles'),
+  Country ('Belize', 'Amérique centrale', 'Belmopan'),
+  Country ('Bénin', 'Arique', 'Porto-Novo'),
+  Country ('Bhoutan', 'Asie', 'Thimphou'),
+  Country ('Biélorussie', 'Europe', 'Minsk'),
+  Country ('Birmanie', 'Asie', 'Naypyidaw'),
+  Country ('Bolivie', 'Amérique du Sud','La Paz'),
+  Country ('Bosnie-Herzégovine', 'Europe', 'Sarajevo'),
+  Country ('Botswana', 'Afrique', 'Gaborone'),
   ];
 
   @override
@@ -38,26 +46,21 @@ List<Country> countryList = [
         appBar: AppBar(
           toolbarHeight: 50,
           backgroundColor: Colors.black,
-          title: Center(
-          child: Text(
-            'LIST OF COUNTRIES',
+          title: Text(
+            '',
             style: TextStyle(
             letterSpacing: 0,
             color: Colors.white
-        )
+        ),
       ),
-    ),
     ),
       body: SafeArea(
       child: Padding(
         padding: const EdgeInsets.all(10),
         child: ListView(
           // physics: BouncingScrollPhysics(),
-          children: countryList.map( (item)=> CountryCard(
-            item,
-            (){setState( (){countryList.remove(item);} );}
-          )
-        ).toList()
+          children: countryList.map((item)=> CountryCard(
+              item, (){setState((){Navigator.pushNamed(context, '/info', arguments: {'name': item.name, 'continent': item.continent, 'capital': item.capital});});})).toList()
       ),
       ),
     )

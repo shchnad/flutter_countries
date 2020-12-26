@@ -3,43 +3,45 @@ import 'package:flutter_countries/country.dart';
 
 class CountryCard extends StatelessWidget {
   final Country item;
-  final Function delete;
-  CountryCard(this.item, this.delete);
+  final Function open;
+  CountryCard(this.item, this.open);
 
   @override
   Widget build(BuildContext context) {
     return Card(
+      color: Colors.grey,
       child: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Container(
-              width: 150,
-              child: Text(item.name,
-                style: TextStyle(fontSize: 20,),
+        child: InkWell(
+          focusColor: Colors.lightBlue,
+        onTap: open,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Container(
+                width: 120,
+                child: Text(item.name,
+                  style: TextStyle(fontSize: 15,),
+                ),
               ),
-            ),
-            SizedBox(width: 10,),
-            Container(
-              width: 150,
-              child: Text(
-                  item.capital,
-                  style: TextStyle(fontSize: 20, color: Colors.blue)
+              Container(
+                width: 50,
+                height: 30,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage('assets/images/${item.name}.JPG')
+                  )
+                ),
               ),
-            ),
-            SizedBox(width: 10,),
-            Container(
-              height: 20,
-              width: 40,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage('assets/images/${item.name}.JPG')
-                )
+              SizedBox(width: 20,),
+              Container(
+                width: 80,
+                child: Text(item.capital,
+                  style: TextStyle(fontSize: 15, color: Colors.blue[900]),
+                ),
               ),
-            ),
-            SizedBox(height: 8,),
-          ],
+            ],
+          ),
         ),
       ),
     );
