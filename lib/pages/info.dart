@@ -10,12 +10,16 @@ void launchURL(String url) async {
 }
 
 class Info extends StatelessWidget {
-Map data = {};
-String urlWiki = '';
-@override
+ Map data = {};
+ String urlWiki = '';
+ int index;
+
+ @override
   Widget build(BuildContext context) {
     data = ModalRoute.of(context).settings.arguments;
     urlWiki = 'https://fr.wikipedia.org/wiki/${data['name']}';
+    index = data['index'];
+
     return Scaffold(
         appBar: AppBar(
         backgroundColor: Colors.black,
@@ -59,8 +63,8 @@ String urlWiki = '';
                     )
                 ),
               ),
-              SizedBox(height: 50,),
-               Container(
+              SizedBox(height: 10,),
+              Container(
                 child: Text(
                     'en ${data['continent']}',
                     style: TextStyle(
@@ -70,11 +74,27 @@ String urlWiki = '';
                     )
                 ),
               ),
-           IconButton(
-             icon: Icon(Icons.search),
-             tooltip: 'wiki',
-             onPressed: () {launchURL(urlWiki);},
-           )
+              IconButton(
+                icon: Icon(Icons.search),
+                tooltip: 'wiki',
+                onPressed: () {launchURL(urlWiki);},
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  IconButton(
+                    icon: Icon(Icons.navigate_before),
+                    tooltip: 'wiki',
+                    onPressed: () {(print('before'));},
+                  ),
+                  SizedBox(width: 180,),
+                  IconButton(
+                    icon: Icon(Icons.navigate_next),
+                    tooltip: 'wiki',
+                    onPressed: () {print('after');},
+                  ),
+                ],
+              ),
             ]),
       ),
     ),

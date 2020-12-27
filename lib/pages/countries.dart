@@ -57,13 +57,18 @@ List<Country> countryList = [
       body: SafeArea(
       child: Padding(
         padding: const EdgeInsets.all(10),
-        child: ListView(
-          // physics: BouncingScrollPhysics(),
-          children: countryList.map((item)=> CountryCard(
-              item, (){setState((){Navigator.pushNamed(context, '/info', arguments: {'name': item.name, 'continent': item.continent, 'capital': item.capital});});})).toList()
-      ),
-      ),
-    )
+        child: ListView.builder(
+          itemCount: countryList.length,
+          itemBuilder: (context, index) => CountryCard(countryList[index],
+               (){setState((){Navigator.pushNamed(context, '/info', arguments: {
+                 'index': index,
+                  'name': countryList[index].name,
+                   'continent': countryList[index].continent,
+                    'capital': countryList[index].capital,
+    });});})
+    ),
+    ),
+        )
     );
   }
 }
