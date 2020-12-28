@@ -15,8 +15,6 @@ class Info extends StatelessWidget {
  String urlWiki = '';
  List countryList;
  int index;
-  int indexBefore;
-  int indexAfter;
 
  @override
   Widget build(BuildContext context) {
@@ -34,7 +32,7 @@ class Info extends StatelessWidget {
       child: InkWell(
         onTap: (){Navigator.pop(context, {});},
         child: Container(
-        color: Colors.grey,
+        color: Colors.grey[300],
         child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -70,7 +68,7 @@ class Info extends StatelessWidget {
                       )
                   ),
                 ),
-                SizedBox(height: 10,),
+                SizedBox(height: 40,),
                 Container(
                   child: Text(
                       'en ${countryList[index].continent}',
@@ -80,11 +78,6 @@ class Info extends StatelessWidget {
                         fontSize: 20,
                       )
                   ),
-                ),
-                IconButton(
-                  icon: Icon(Icons.search),
-                  tooltip: 'wiki',
-                  onPressed: () {launchURL(urlWiki);},
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -100,7 +93,13 @@ class Info extends StatelessWidget {
                               'countryList': countryList
                                     });}
                       ),
-                    SizedBox(width: 180,),
+                    SizedBox(width: 30,),
+                    IconButton(
+                      icon: Icon(Icons.search),
+                      tooltip: 'wiki',
+                      onPressed: () {launchURL(urlWiki);},
+                    ),
+                    SizedBox(width: 30,),
                     IconButton(
                       icon: Icon(Icons.navigate_next),
                       tooltip: 'wiki',
