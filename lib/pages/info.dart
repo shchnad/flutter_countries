@@ -93,7 +93,7 @@ class Info extends StatelessWidget {
                       icon: Icon(Icons.navigate_before),
                       tooltip: 'wiki',
                       onPressed: (){
-                        Navigator.pushNamed(
+                        Navigator.pushReplacementNamed(
                             context, '/info',
                             arguments: {
                               'index': index > 1 ? index - 1 : 0,
@@ -105,7 +105,7 @@ class Info extends StatelessWidget {
                       icon: Icon(Icons.navigate_next),
                       tooltip: 'wiki',
                         onPressed: (){
-                          Navigator.pushNamed(
+                          Navigator.pushReplacementNamed(
                               context, '/info',
                               arguments: {
                                 'index': index < (countryList.length - 2) ? index + 1 : countryList.length - 1,
