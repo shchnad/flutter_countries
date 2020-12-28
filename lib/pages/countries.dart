@@ -9,7 +9,7 @@ class CountryList extends StatefulWidget {
 
 class _CountryListState extends State<CountryList> {
 
-List<Country> countryList = [
+  List<Country> countryList = [
   Country ('Afghanistan', 'Asie', 'Kaboul'),
   Country ('Afrique du Sud', 'Afrique', 'Pretoria'),
   Country ('Albanie', 'Europe', 'Tirana'),
@@ -39,6 +39,7 @@ List<Country> countryList = [
   Country ('Botswana', 'Afrique', 'Gaborone'),
   ];
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,13 +60,20 @@ List<Country> countryList = [
         padding: const EdgeInsets.all(10),
         child: ListView.builder(
           itemCount: countryList.length,
-          itemBuilder: (context, index) => CountryCard(countryList[index],
-               (){setState((){Navigator.pushNamed(context, '/info', arguments: {
-                 'index': index,
-                  'name': countryList[index].name,
-                   'continent': countryList[index].continent,
-                    'capital': countryList[index].capital,
-    });});})
+          itemBuilder: (context, index) {
+            return CountryCard(countryList[index], () {
+              setState(() {
+                Navigator.pushNamed(
+                    context, '/info',
+                    arguments: {
+                      'index': index,
+                      'countryList': countryList
+                    }
+                );
+              }
+              );
+            });
+          }
     ),
     ),
         )
