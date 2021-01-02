@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 class Home extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -9,65 +8,57 @@ class Home extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.black,
         title: Center(
-          child: Text(
-          'Un peu de GEO',
-          style: TextStyle(
-              letterSpacing: 0,
-              color: Colors.white
-            )
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
+            child: Text('geo quizz',
+                style: TextStyle(
+                    color: Theme.of(context).accentColor, fontSize: 30),
+            ),
           ),
         ),
       ),
       body: SafeArea(
-        child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-             Container(
-              height: 300,
-               decoration: BoxDecoration(
+        child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
+          Container(
+            height: 300,
+            width: 265,
+            decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage('assets/images/world.jpg')
-                )
-              ),
-            ),
+                    image: AssetImage('assets/images/world.jpg'))),
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Container(
-                  height: 80,
+                  height: 60,
                   width: 120,
                   child: RaisedButton(
-                    color: Colors.grey,
+                    color: Theme.of(context).primaryColor,
                     child: Text(
                       'apprendre',
-                      style: TextStyle(
-                          fontSize: 15,
-                          color: Colors.black
-                      ),
+                      style: TextStyle(fontSize: 18, color: Theme.of(context).accentColor),
                     ),
-                    onPressed: (){
+                    onPressed: () {
                       Navigator.pushNamed(context, '/countries');
                     },
-                  )
-              ),
+                  )),
               SizedBox(
                 width: 20,
               ),
               Container(
-                  height: 80,
+                  height: 60,
                   width: 120,
                   child: RaisedButton(
-                    textColor: Colors.white,
                     color: Colors.red,
                     child: Text(
                       'evaluer',
                       style: TextStyle(
-                          fontSize: 15,
-                      ),
+                          fontSize: 18, color: Theme.of(context).accentColor),
                     ),
-                    onPressed: (){},
-                  )
-              ),
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/test');
+                    },
+                  )),
             ],
           ),
         ]),
