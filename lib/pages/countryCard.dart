@@ -9,7 +9,12 @@ void launchURL(String url) async {
   }
 }
 
-class CountryCard extends StatelessWidget {
+class CountryCard extends StatefulWidget {
+  @override
+  _CountryCardState createState() => _CountryCardState();
+}
+
+class _CountryCardState extends State<CountryCard> {
   Map data = {};
   String urlWiki = '';
   List countryList;
@@ -101,7 +106,7 @@ class CountryCard extends StatelessWidget {
                                   tooltip: 'wiki',
                                   onPressed: () {
                                     Navigator.pushReplacementNamed(
-                                        context, '/info', arguments: {
+                                        context, '/countryCard', arguments: {
                                       'index': index > 1 ? index - 1 : 0,
                                       'countryList': countryList
                                     });
@@ -120,7 +125,7 @@ class CountryCard extends StatelessWidget {
                                   tooltip: 'wiki',
                                   onPressed: () {
                                     Navigator.pushReplacementNamed(
-                                        context, '/info',
+                                        context, '/countryCard',
                                         arguments: {
                                           'index':
                                               index < (countryList.length - 2)
