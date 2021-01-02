@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_countries/country.dart';
+import 'package:flutter_countries/countryModel.dart';
 
-class CountryCard extends StatelessWidget {
-  final Country item;
-  final Function open;
-
-  CountryCard(this.item, this.open);
+class CountryLine extends StatelessWidget {
+  final Country countryInList;
+  final Function openCountryCard;
+  CountryLine(this.countryInList, this.openCountryCard);
 
   @override
   Widget build(BuildContext context) {
@@ -15,14 +14,14 @@ class CountryCard extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: InkWell(
           // focusColor: Colors.lightBlue,
-          onTap: open,
+          onTap: openCountryCard,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Container(
                 width: 120,
                 child: Text(
-                  item.name,
+                  countryInList.name,
                   style: TextStyle(fontSize: 18, color: Colors.black),
                 ),
               ),
@@ -31,7 +30,7 @@ class CountryCard extends StatelessWidget {
                 height: 30,
                 decoration: BoxDecoration(
                     image: DecorationImage(
-                        image: AssetImage('assets/images/${item.name}.JPG'))),
+                        image: AssetImage('assets/images/${countryInList.name}.JPG'))),
               ),
               SizedBox(
                 width: 20,
@@ -39,8 +38,9 @@ class CountryCard extends StatelessWidget {
               Container(
                 width: 80,
                 child: Text(
-                  item.capital,
-                  style: TextStyle(fontSize: 18, color: Theme.of(context).primaryColor),
+                  countryInList.capital,
+                  style: TextStyle(
+                      fontSize: 18, color: Theme.of(context).primaryColor),
                 ),
               ),
             ],

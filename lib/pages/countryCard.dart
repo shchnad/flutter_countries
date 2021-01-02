@@ -9,7 +9,7 @@ void launchURL(String url) async {
   }
 }
 
-class Info extends StatelessWidget {
+class CountryCard extends StatelessWidget {
   Map data = {};
   String urlWiki = '';
   List countryList;

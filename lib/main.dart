@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_countries/pages/home.dart';
 import 'package:flutter_countries/pages/countries.dart';
-import 'package:flutter_countries/pages/info.dart';
+import 'package:flutter_countries/pages/countryCard.dart';
 import 'package:flutter_countries/pages/test.dart';
 
 void main() => runApp(MaterialApp(
@@ -15,7 +15,7 @@ void main() => runApp(MaterialApp(
         initialRoute: '/',
         routes: {
           '/': (context) => Home(),
-          '/countries': (context) => CountryList(),
-          '/info': (context) => Info(),
+          '/countries': (context) => Countries(),
+          '/countryCard': (context) => CountryCard(),
           '/test': (context) => Test(),
         }));

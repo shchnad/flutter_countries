@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_countries/country.dart';
-import 'package:flutter_countries/countryCard.dart';
+import 'package:flutter_countries/countryModel.dart';
+import 'package:flutter_countries/countryLine.dart';
 
-class CountryList extends StatefulWidget {
+class Countries extends StatefulWidget {
   @override
-  _CountryListState createState() => _CountryListState();
+  _CountriesState createState() => _CountriesState();
 }
 
-class _CountryListState extends State<CountryList> {
+class _CountriesState extends State<Countries> {
   List<Country> countryList = [
     Country('Afghanistan', 'Asie', 'Kaboul'),
     Country('Afrique du Sud', 'Afrique', 'Pretoria'),
@@ -38,6 +38,13 @@ class _CountryListState extends State<CountryList> {
     Country('Botswana', 'Afrique', 'Gaborone'),
   ];
 
+  void openCountryCard(index, countryList) {
+    Navigator.pushNamed(
+        context,
+        '/countryCard',
+        arguments: {'index': index, 'countryList': countryList});
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,7 +54,7 @@ class _CountryListState extends State<CountryList> {
           backgroundColor: Colors.black,
           title: Text(
             '',
-            style: TextStyle(letterSpacing: 0, color: Colors.white),
+            style: TextStyle(color: Theme.of(context).accentColor),
           ),
         ),
         body: SafeArea(
@@ -56,13 +63,8 @@ class _CountryListState extends State<CountryList> {
             child: ListView.builder(
                 itemCount: countryList.length,
                 itemBuilder: (context, index) {
-                  return CountryCard(countryList[index], () {
-                    setState(() {
-                      Navigator.pushNamed(context, '/info', arguments: {
-                        'index': index,
-                        'countryList': countryList
-                      });
-                    });
+                  return CountryLine(countryList[index], (){
+                    this.openCountryCard(index, countryList);
                   });
                 }),
           ),
