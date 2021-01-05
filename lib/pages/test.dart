@@ -1,23 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_countries/pages/quizz.dart';
-import 'dart:math';
+import 'package:flutter_countries/countryModel.dart';
+
 
 class Test extends StatefulWidget {
+  final List<Country> data;
+  Test({this.data});
   @override
   _TestState createState() => _TestState();
 }
 
 class _TestState extends State<Test> {
-
-  void random() {
-    var rng = new Random();
-    for (var i = 0; i < 10; i++) {
-      print(rng.nextInt(100));
-    }
-  }
-
   var _name = TextEditingController();
-
   @override
   Widget build(BuildContext context) {
     body:
@@ -34,49 +28,34 @@ class _TestState extends State<Test> {
         body: SafeArea(
             child: Center(
           child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Container(
-                  child: TextField(
-                    controller: _name,
-                    autofocus: true,
-                    maxLength: 15,
-                    cursorColor: Theme.of(context).primaryColor,
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                        color: Theme.of(context).accentColor,
-                        decoration: TextDecoration.none,
-                        fontSize: 30),
-                    decoration: new InputDecoration(
-                      hintStyle: TextStyle(
-                          color: Theme.of(context).primaryColor,
-                          decoration: TextDecoration.none),
-                      hintText: 'votre nom ?',
-                      border: InputBorder.none,
-                      // focusedBorder: OutlineInputBorder(
-                      //     borderSide: BorderSide(
-                      //         color: Theme.of(context).primaryColor, width: 2.0)),
-                      // enabledBorder: OutlineInputBorder(
-                      //   borderSide: BorderSide(color: Theme.of(context).primaryColor, width: 2.0),
-                      // ),
-                    ),
-                  ),
-                  height: 80,
-                  width: 300,
-                ),
+                Text('votre nom?', style: TextStyle(fontSize:18, color: Theme.of(context).accentColor),),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    SizedBox(
-                      width: 20,
+                    Container(
+                      child: TextField(
+                        controller: _name,
+                        autofocus: true,
+                        maxLength: 10,
+                        cursorColor: Theme.of(context).accentColor,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            color: Theme.of(context).primaryColor,
+                            decoration: TextDecoration.none,
+                            fontSize: 30
+                        ),
+                      ),
+                      height: 80,
+                      width: 280,
                     ),
                     Container(
                       height: 60,
-                      width: 120,
+                      width: 60,
                       child: RaisedButton(
-                          color: Colors.red,
+                          color: Theme.of(context).primaryColor,
                           child: Text(
-                            'supprimez',
+                            'effacer',
                             style: TextStyle(
                               color: Theme.of(context).accentColor,
                               fontSize: 18,
@@ -84,29 +63,57 @@ class _TestState extends State<Test> {
                           ),
                           onPressed: () {
                             _name.text = '';
-                            this.random();
                           }),
                     ),
-                    SizedBox(width: 20),
+                  ],
+                ),
+
+
+                SizedBox(height: 30),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
                     Container(
                       height: 60,
                       width: 120,
                       child: RaisedButton(
-                          color: Theme.of(context).primaryColor,
+                          color: Colors.red,
                           child: Text(
-                            'ok',
+                            'capitales',
                             style: TextStyle(
                               color: Theme.of(context).accentColor,
                               fontSize: 18,
                             ),
                           ),
-                          onPressed: () {
-                            _name.text = _name.text == '' ? 'Megaman' : _name.text;
-                            var route = MaterialPageRoute(
-                                builder: (BuildContext context) =>
-                                    Quizz(value: _name.text));
-                            Navigator.of(context).push(route);
-                          }),
+                          // onPressed: () {
+                          //   _name.text = _name.text == '' ? '???' : _name.text;
+                          //   var route = MaterialPageRoute(
+                          //       builder: (BuildContext context) => Quizz(userName: _name.text, data: widget.data)
+                          //   );
+                          //   Navigator.of(context).push(route);
+                          // }
+                          ),
+                    ),
+                    Container(
+                      height: 60,
+                      width: 120,
+                      child: RaisedButton(
+                          color: Colors.red,
+                          child: Text(
+                            'drapeaux',
+                            style: TextStyle(
+                              color: Theme.of(context).accentColor,
+                              fontSize: 18,
+                            ),
+                          ),
+                          // onPressed: () {
+                          //   _name.text = _name.text == '' ? '???' : _name.text;
+                          //   var route = MaterialPageRoute(
+                          //       builder: (BuildContext context) => Quizz(userName: _name.text, data: widget.data)
+                          //   );
+                          //   Navigator.of(context).push(route);
+                          // }
+                          ),
                     ),
                   ],
                 ),

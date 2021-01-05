@@ -16,16 +16,16 @@ class CountryCard extends StatefulWidget {
 
 class _CountryCardState extends State<CountryCard> {
   Map data = {};
-  String urlWiki = '';
+  String urlWiki;
   List countryList;
-  int index;
+  int countryIndex;
 
   @override
   Widget build(BuildContext context) {
     data = ModalRoute.of(context).settings.arguments;
     countryList = data['countryList'];
-    index = data['index'];
-    urlWiki = 'https://fr.wikipedia.org/wiki/${countryList[index].name}';
+    countryIndex = data['index'];
+    urlWiki = 'https://fr.wikipedia.org/wiki/${countryList[countryIndex].name}';
 
     return Scaffold(
         appBar: AppBar(
@@ -43,16 +43,35 @@ class _CountryCardState extends State<CountryCard> {
                 child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Container(
+                            child:
+                                Text('${countryList[countryIndex].continent}',
+                                    style: TextStyle(
+                                      letterSpacing: 0,
+                                      color: Colors.black,
+                                      fontSize: 20,
+                                    )),
+                          ),
+                          IconButton(
+                            iconSize: 30,
+                            icon: Icon(Icons.search),
+                            tooltip: 'wiki',
+                            onPressed: () {
+                              launchURL(urlWiki);
+                            },
+                          ),
+                        ],
+                      ),
                       SizedBox(
-                        height: 20,
+                        height: 30,
                       ),
                       Container(
-                        child: Text('${countryList[index].name}',
-                            style: TextStyle(
-                              letterSpacing: 0,
-                              color: Colors.black,
-                              fontSize: 35,
-                            )),
+                        child: Text('${countryList[countryIndex].name}',
+                            style:
+                                TextStyle(color: Colors.black, fontSize: 35)),
                       ),
                       SizedBox(
                         height: 10,
@@ -62,36 +81,22 @@ class _CountryCardState extends State<CountryCard> {
                         decoration: BoxDecoration(
                             image: DecorationImage(
                                 image: AssetImage(
-                                    'assets/images/${countryList[index].name}.JPG'))),
+                                    'assets/images/${countryList[countryIndex].name}.JPG'))),
                       ),
                       SizedBox(
                         height: 10,
                       ),
                       Container(
-                        child: Text('${countryList[index].capital}',
+                        child: Text('${countryList[countryIndex].capital}',
                             style: TextStyle(
-                              letterSpacing: 0,
-                              color: Theme.of(context).primaryColor,
-                              fontSize: 35,
-                            )),
+                                color: Theme.of(context).primaryColor,
+                                fontSize: 35)),
                       ),
                       SizedBox(
                         height: 20,
                       ),
-                      Container(
-                        child: Text('en ${countryList[index].continent}',
-                            style: TextStyle(
-                              letterSpacing: 0,
-                              color: Colors.black,
-                              fontSize: 20,
-                            )),
-                      ),
-                      IconButton(
-                        icon: Icon(Icons.search),
-                        tooltip: 'wiki',
-                        onPressed: () {
-                          launchURL(urlWiki);
-                        },
+                      SizedBox(
+                        height: 20,
                       ),
                       Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -99,38 +104,55 @@ class _CountryCardState extends State<CountryCard> {
                             Container(
                               height: 60,
                               width: 120,
-                              color: Theme.of(context).primaryColor,
+                              color: Theme.of(context).accentColor,
                               child: IconButton(
+                                  iconSize: 30,
                                   icon: Icon(Icons.navigate_before),
-                                  color: Theme.of(context).accentColor,
-                                  tooltip: 'wiki',
+                                  // icon: Icon(Icons.keyboard_backspace),
+                                  color: Colors.black,
                                   onPressed: () {
                                     Navigator.pushReplacementNamed(
                                         context, '/countryCard', arguments: {
-                                      'index': index > 1 ? index - 1 : 0,
+                                      'index': countryIndex > 1
+                                          ? countryIndex - 1
+                                          : 0,
                                       'countryList': countryList
                                     });
                                   }),
                             ),
-                            SizedBox(
-                              width: 100,
+                            Container(
+                              height: 60,
+                              width: 120,
+                              color: Theme.of(context).accentColor,
+                              child: IconButton(
+                                // icon: Icon(Icons.highlight_off),
+                                icon: Icon(Icons.clear),
+                                // icon: Icon(Icons.cancel),
+                                // icon: Icon(Icons.tag_faces),
+                                iconSize: 30,
+                                color: Colors.black,
+                                onPressed: () {
+                                  Navigator.pop(context, {});
+                                },
+                              ),
                             ),
                             Container(
                               height: 60,
                               width: 120,
-                              color: Theme.of(context).primaryColor,
+                              color: Theme.of(context).accentColor,
                               child: IconButton(
                                   icon: Icon(Icons.navigate_next),
-                                  color: Theme.of(context).accentColor,
-                                  tooltip: 'wiki',
+                                  // icon: Icon(Icons.arrow_right_alt),
+                                  iconSize: 30,
+                                  color: Colors.black,
                                   onPressed: () {
                                     Navigator.pushReplacementNamed(
                                         context, '/countryCard',
                                         arguments: {
-                                          'index':
-                                              index < (countryList.length - 2)
-                                                  ? index + 1
-                                                  : countryList.length - 1,
+                                          'index': countryIndex <
+                                                  (countryList.length - 2)
+                                              ? countryIndex + 1
+                                              : countryList.length - 1,
                                           'countryList': countryList
                                         });
                                   }),
