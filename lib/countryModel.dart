@@ -1,8 +1,10 @@
-class Country {
+class C {
+  int id;
   String name;
   String continent;
   String capital;
-  Country(nm, cn, cp) {
+  C(i, nm, cn, cp) {
+      this.id = i;
       this.name = nm;
       this.continent = cn;
       this.capital = cp;

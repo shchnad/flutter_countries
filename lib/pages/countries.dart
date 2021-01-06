@@ -3,9 +3,9 @@ import 'package:flutter_countries/countryModel.dart';
 import 'package:flutter_countries/countryLine.dart';
 
 class Countries extends StatefulWidget {
-  final List<Country> data;
-
-  Countries({this.data});
+  final List<C> data;
+  final String language;
+  Countries({this.data, this.language});
 
   @override
   _CountriesState createState() => _CountriesState();
@@ -14,7 +14,7 @@ class Countries extends StatefulWidget {
 class _CountriesState extends State<Countries> {
   void openCountryCard(index, countryList) {
     Navigator.pushNamed(context, '/countryCard',
-        arguments: {'index': index, 'countryList': countryList});
+        arguments: {'index': index, 'countryList': widget.data, 'language': widget.language});
   }
 
   @override

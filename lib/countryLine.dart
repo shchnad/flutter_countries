@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_countries/countryModel.dart';
 
 class CountryLine extends StatelessWidget {
-  final Country countryInList;
+  final C countryInList;
   final Function openCountryCard;
   CountryLine(this.countryInList, this.openCountryCard);
 
@@ -30,7 +30,7 @@ class CountryLine extends StatelessWidget {
                 height: 30,
                 decoration: BoxDecoration(
                     image: DecorationImage(
-                        image: AssetImage('assets/images/${countryInList.name}.JPG'))),
+                        image: AssetImage('assets/images/${countryInList.id}.JPG'))),
               ),
               SizedBox(
                 width: 20,

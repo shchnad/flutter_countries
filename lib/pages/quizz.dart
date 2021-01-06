@@ -3,10 +3,10 @@ import 'package:flutter_countries/countryModel.dart';
 import 'dart:math';
 
 class Quizz extends StatefulWidget {
-  final List<Country> data;
+  final List<C> data;
   final String quizzType;
-
-  Quizz({this.data, this.quizzType});
+  final String language;
+  Quizz({this.data, this.quizzType, this.language});
 
   int tap = 0;
   int score = 0;
@@ -77,7 +77,7 @@ class _QuizzState extends State<Quizz> {
         widget.tap++;
         if (ind != randomIndex) {
           Navigator.pushNamed(context, '/countryCard',
-              arguments: {'index': randomIndex, 'countryList': widget.data});
+              arguments: {'index': randomIndex, 'countryList': widget.data, 'language': widget.language});
         } else {
           widget.score++;
           Navigator.pushReplacement(
@@ -122,7 +122,7 @@ class _QuizzState extends State<Quizz> {
                       decoration: BoxDecoration(
                           image: DecorationImage(
                               image: AssetImage(
-                                  'assets/images/${widget.data[randomIndex].name}.JPG'))),
+                                  'assets/images/${widget.data[randomIndex].id}.JPG'))),
                     ),
                   ),
                   Container(

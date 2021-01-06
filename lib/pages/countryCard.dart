@@ -19,13 +19,14 @@ class _CountryCardState extends State<CountryCard> {
   String urlWiki;
   List countryList;
   int countryIndex;
-
+  String language;
   @override
   Widget build(BuildContext context) {
     data = ModalRoute.of(context).settings.arguments;
     countryList = data['countryList'];
     countryIndex = data['index'];
-    urlWiki = 'https://fr.wikipedia.org/wiki/${countryList[countryIndex].name}';
+    language = data['language'];
+    urlWiki = 'https://$language.wikipedia.org/wiki/${countryList[countryIndex].name}';
 
     return Scaffold(
         appBar: AppBar(
@@ -81,7 +82,7 @@ class _CountryCardState extends State<CountryCard> {
                         decoration: BoxDecoration(
                             image: DecorationImage(
                                 image: AssetImage(
-                                    'assets/images/${countryList[countryIndex].name}.JPG'))),
+                                    'assets/images/${countryList[countryIndex].id}.JPG'))),
                       ),
                       SizedBox(
                         height: 10,
