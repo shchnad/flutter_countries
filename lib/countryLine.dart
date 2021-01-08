@@ -22,7 +22,7 @@ class CountryLine extends StatelessWidget {
                 width: 120,
                 child: Text(
                   countryInList.name,
-                  style: TextStyle(fontSize: 18, color: Colors.black),
+                  style: TextStyle(fontSize: 15, color: Colors.black),
                 ),
               ),
               Container(
@@ -40,7 +40,7 @@ class CountryLine extends StatelessWidget {
                 child: Text(
                   countryInList.capital,
                   style: TextStyle(
-                      fontSize: 18, color: Theme.of(context).primaryColor),
+                      fontSize: 15, color: Theme.of(context).primaryColor),
                 ),
               ),
             ],

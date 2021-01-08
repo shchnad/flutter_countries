@@ -135,10 +135,10 @@ class _QuizzState extends State<Quizz> {
               ),
             ),
             SizedBox(
-              height: 30,
+              height: 10,
             ),
             Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Container(
                   width: 310,
@@ -147,6 +147,7 @@ class _QuizzState extends State<Quizz> {
                       child: Center(
                         child: Text(
                           '${widget.quizzType == 'capital' ? widget.data[randomQuestionIndex1].capital : widget.data[randomQuestionIndex1].name}',
+                          textAlign: TextAlign.center,
                           style: TextStyle(
                               color: widget.quizzType == 'capital'
                                   ? Theme.of(context).primaryColor
@@ -165,6 +166,7 @@ class _QuizzState extends State<Quizz> {
                       child: Center(
                         child: Text(
                           '${widget.quizzType == 'capital' ? widget.data[randomQuestionIndex2].capital : widget.data[randomQuestionIndex2].name}',
+                          textAlign: TextAlign.center,
                           style: TextStyle(
                               color: widget.quizzType == 'capital'
                                   ? Theme.of(context).primaryColor
@@ -183,6 +185,7 @@ class _QuizzState extends State<Quizz> {
                       child: Center(
                         child: Text(
                           '${widget.quizzType == 'capital' ? widget.data[randomQuestionIndex3].capital : widget.data[randomQuestionIndex3].name}',
+                          textAlign: TextAlign.center,
                           style: TextStyle(
                               color: widget.quizzType == 'capital'
                                   ? Theme.of(context).primaryColor
@@ -201,6 +204,7 @@ class _QuizzState extends State<Quizz> {
                       child: Center(
                         child: Text(
                           '${widget.quizzType == 'capital' ? widget.data[randomQuestionIndex4].capital : widget.data[randomQuestionIndex4].name}',
+                          textAlign: TextAlign.center,
                           style: TextStyle(
                               color: widget.quizzType == 'capital'
                                   ? Theme.of(context).primaryColor
