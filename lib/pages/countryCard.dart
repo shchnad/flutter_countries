@@ -64,7 +64,7 @@ class _CountryCardState extends State<CountryCard> {
                       ],
                     ),
                     SizedBox(
-                      height: 20,
+                      height: 10,
                     ),
                     Container(
                       child: Text('${countryList[countryIndex].name}',
@@ -93,7 +93,7 @@ class _CountryCardState extends State<CountryCard> {
                               fontSize: 35)),
                     ),
                     SizedBox(
-                      height: 40,
+                      height: 20,
                     ),
                     Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
