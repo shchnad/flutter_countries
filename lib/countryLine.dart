@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_countries/countryModel.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 
 class CountryLine extends StatelessWidget {
   final C countryInList;
   final Function openCountryCard;
+
   CountryLine(this.countryInList, this.openCountryCard);
 
   @override
@@ -13,34 +15,39 @@ class CountryLine extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: InkWell(
-          // focusColor: Colors.lightBlue,
           onTap: openCountryCard,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Container(
-                width: 120,
-                child: Text(
+                width: MediaQuery.of(context).size.width / 2.7,
+                child: AutoSizeText(
                   countryInList.name,
-                  style: TextStyle(fontSize: 15, color: Colors.black),
+                  style: TextStyle(
+                      fontSize: 20,
+                      color: Colors.black,
+                      fontWeight: FontWeight.w700),
                 ),
               ),
               Container(
-                width: 50,
-                height: 30,
+                height: MediaQuery.of(context).size.height / 15,
+                width: MediaQuery.of(context).size.width / 10,
                 decoration: BoxDecoration(
                     image: DecorationImage(
-                        image: AssetImage('assets/images/${countryInList.id}.JPG'))),
+                        image: AssetImage(
+                            'assets/images/${countryInList.id}.JPG'))),
               ),
               SizedBox(
-                width: 20,
+                width: MediaQuery.of(context).size.width / 35,
               ),
               Container(
-                width: 80,
-                child: Text(
+                width: MediaQuery.of(context).size.width / 3,
+                child: AutoSizeText(
                   countryInList.capital,
                   style: TextStyle(
-                      fontSize: 15, color: Theme.of(context).primaryColor),
+                      fontSize: 18,
+                      color: Theme.of(context).primaryColor,
+                      fontWeight: FontWeight.w700),
                 ),
               ),
             ],

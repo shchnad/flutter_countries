@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_countries/countryModel.dart';
 import 'dart:math';
+import 'package:auto_size_text/auto_size_text.dart';
 
 class Quizz extends StatefulWidget {
   final List<C> data;
   final String quizzType;
   final String language;
+
   Quizz({this.data, this.quizzType, this.language});
 
   int tap = 0;
@@ -76,8 +78,11 @@ class _QuizzState extends State<Quizz> {
       setState(() {
         widget.tap++;
         if (ind != randomIndex) {
-          Navigator.pushNamed(context, '/countryCard',
-              arguments: {'index': randomIndex, 'countryList': widget.data, 'language': widget.language});
+          Navigator.pushNamed(context, '/countryCard', arguments: {
+            'index': randomIndex,
+            'countryList': widget.data,
+            'language': widget.language
+          });
         } else {
           widget.score++;
           Navigator.pushReplacement(
@@ -91,12 +96,52 @@ class _QuizzState extends State<Quizz> {
     return Scaffold(
         backgroundColor: Colors.black,
         appBar: AppBar(
+          automaticallyImplyLeading: false,
+          // leading: Builder(
+          //   builder: (BuildContext context) {
+          //     return IconButton(
+          //       icon: const Icon(Icons.navigate_before, size: 40),
+          //       onPressed: () {
+          //         Navigator.pop(context, {});
+          //       },
+          //       tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
+          //     );
+          //   },
+          // ),
           backgroundColor: Colors.black,
-          title: Padding(
-            padding: const EdgeInsets.fromLTRB(85, 0, 0, 0),
-            child: Text('${widget.score} / ${widget.tap}',
-                style: TextStyle(
-                    color: Theme.of(context).accentColor, fontSize: 25)),
+          title: Container(
+            height: MediaQuery.of(context).size.height / 12,
+            width: MediaQuery.of(context).size.width,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(
+                  alignment: Alignment.center,
+                  child: AutoSizeText('${widget.score} / ${widget.tap}',
+                      style: TextStyle(
+                          color: Theme.of(context).accentColor, fontSize: 30)),
+                ),
+                InkWell(
+                  onTap: () {
+                    Navigator.pop(context, {});
+                  },
+                  child: Container(
+                    width: (MediaQuery.of(context).size.width) / 10,
+                    decoration: BoxDecoration(color: Colors.black),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: LayoutBuilder(builder: (context, constraint) {
+                        return Icon(
+                          Icons.clear,
+                          size: constraint.biggest.height,
+                          color: Colors.white,
+                        );
+                      }),
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
         body: SafeArea(
@@ -111,14 +156,19 @@ class _QuizzState extends State<Quizz> {
               child: Column(
                 children: [
                   Container(
-                    child: Text('$country',
-                        style: TextStyle(color: Colors.black, fontSize: 30)),
+                    child: AutoSizeText('$country',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 30,
+                          fontWeight: FontWeight.w700,
+                        )),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(5.0),
                     child: Container(
-                      height: 180,
-                      width: 300,
+                      width: MediaQuery.of(context).size.width,
+                      height: MediaQuery.of(context).size.height / 4,
                       decoration: BoxDecoration(
                           image: DecorationImage(
                               image: AssetImage(
@@ -126,90 +176,101 @@ class _QuizzState extends State<Quizz> {
                     ),
                   ),
                   Container(
-                    child: Text('$capital',
+                    child: AutoSizeText('$capital',
                         style: TextStyle(
-                            color: Theme.of(context).primaryColor,
-                            fontSize: 30)),
+                          color: Theme.of(context).primaryColor,
+                          fontSize: 30,
+                          // fontWeight: FontWeight.w700,
+                        )),
                   ),
                 ],
               ),
             ),
             SizedBox(
-              height: 10,
+              height: MediaQuery.of(context).size.height / 30,
             ),
             Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Container(
-                  width: 310,
+                  width: MediaQuery.of(context).size.width,
                   child: RaisedButton(
                       color: Theme.of(context).accentColor,
                       child: Center(
-                        child: Text(
+                        child: AutoSizeText(
                           '${widget.quizzType == 'capital' ? widget.data[randomQuestionIndex1].capital : widget.data[randomQuestionIndex1].name}',
                           textAlign: TextAlign.center,
                           style: TextStyle(
                               color: widget.quizzType == 'capital'
                                   ? Theme.of(context).primaryColor
                                   : Colors.black,
-                              fontSize: 25),
+                              fontSize: 30),
                         ),
                       ),
                       onPressed: () {
                         result(randomQuestionIndex1);
                       }),
                 ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height / 100,
+                ),
                 Container(
-                  width: 310,
+                  width: MediaQuery.of(context).size.width,
                   child: RaisedButton(
                       color: Theme.of(context).accentColor,
                       child: Center(
-                        child: Text(
+                        child: AutoSizeText(
                           '${widget.quizzType == 'capital' ? widget.data[randomQuestionIndex2].capital : widget.data[randomQuestionIndex2].name}',
                           textAlign: TextAlign.center,
                           style: TextStyle(
                               color: widget.quizzType == 'capital'
                                   ? Theme.of(context).primaryColor
                                   : Colors.black,
-                              fontSize: 25),
+                              fontSize: 30),
                         ),
                       ),
                       onPressed: () {
                         result(randomQuestionIndex2);
                       }),
                 ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height / 100,
+                ),
                 Container(
-                  width: 310,
+                  width: MediaQuery.of(context).size.width,
                   child: RaisedButton(
                       color: Theme.of(context).accentColor,
                       child: Center(
-                        child: Text(
+                        child: AutoSizeText(
                           '${widget.quizzType == 'capital' ? widget.data[randomQuestionIndex3].capital : widget.data[randomQuestionIndex3].name}',
                           textAlign: TextAlign.center,
                           style: TextStyle(
                               color: widget.quizzType == 'capital'
                                   ? Theme.of(context).primaryColor
                                   : Colors.black,
-                              fontSize: 25),
+                              fontSize: 30),
                         ),
                       ),
                       onPressed: () {
                         result(randomQuestionIndex3);
                       }),
                 ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height / 100,
+                ),
                 Container(
-                  width: 310,
+                  width: MediaQuery.of(context).size.width,
                   child: RaisedButton(
                       color: Theme.of(context).accentColor,
                       child: Center(
-                        child: Text(
+                        child: AutoSizeText(
                           '${widget.quizzType == 'capital' ? widget.data[randomQuestionIndex4].capital : widget.data[randomQuestionIndex4].name}',
                           textAlign: TextAlign.center,
                           style: TextStyle(
                               color: widget.quizzType == 'capital'
                                   ? Theme.of(context).primaryColor
                                   : Colors.black,
-                              fontSize: 25),
+                              fontSize: 30),
                         ),
                       ),
                       onPressed: () {
