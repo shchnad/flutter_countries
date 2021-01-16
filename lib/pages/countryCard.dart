@@ -34,157 +34,170 @@ class _CountryCardState extends State<CountryCard> {
         'https://$language.wikipedia.org/wiki/${countryList[countryIndex].name}';
 
     return Scaffold(
+        backgroundColor: Colors.black,
         appBar: AppBar(
           automaticallyImplyLeading: false,
           backgroundColor: Colors.black,
           title: Center(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  child: AutoSizeText('${countryList[countryIndex].continent}',
-                      style: TextStyle(
-                        fontSize: 20,
-                      )),
-                ),
-                InkWell(
-                  onTap: () {
-                    launchURL(urlWiki);
-                  },
-                  child: Container(
-                    width: (MediaQuery.of(context).size.width) / 8,
-                    height: MediaQuery.of(context).size.height / 12,
-                    decoration: BoxDecoration(color: Colors.black),
+            child: Container(
+              height: MediaQuery.of(context).size.height / 15,
+              width: MediaQuery.of(context).size.width,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
                     child: Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: LayoutBuilder(builder: (context, constraint) {
-                        return Icon(
-                          Icons.search,
-                          size: constraint.biggest.height,
-                          color: Colors.white,
-                        );
-                      }),
+                      padding: const EdgeInsets.all(8.0),
+                      child:
+                          AutoSizeText('${countryList[countryIndex].continent}',
+                              style: TextStyle(
+                                fontSize: 30,
+                              )),
                     ),
                   ),
-                ),
-              ],
+                  InkWell(
+                    onTap: () {
+                      launchURL(urlWiki);
+                    },
+                    child: Container(
+                      width: (MediaQuery.of(context).size.width) / 8,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: LayoutBuilder(builder: (context, constraint) {
+                          return Icon(
+                            Icons.search,
+                            size: constraint.biggest.height,
+                            color: Colors.white,
+                          );
+                        }),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
         body: SafeArea(
-          child: Container(
-            color: Colors.grey[300],
-            child: Center(
-              child:
-                  Column(mainAxisAlignment: MainAxisAlignment.start, children: [
-                SizedBox(
-                  height: 20,
-                ),
-                Container(
-                  height: MediaQuery.of(context).size.height / 12,
-                  child: AutoSizeText('${countryList[countryIndex].name}',
-                      textAlign: TextAlign.center,
-                      maxLines: 2,
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 40,
-                        fontWeight: FontWeight.w700,
-                      )),
-                ),
-                Container(
-                  width: MediaQuery.of(context).size.width,
-                  height: MediaQuery.of(context).size.height / 2.5,
-                  decoration: BoxDecoration(
-                      image: DecorationImage(
-                          image: AssetImage(
-                              'assets/images/${countryList[countryIndex].id}.JPG'))),
-                ),
-                Container(
-                  height: MediaQuery.of(context).size.height / 7,
-                  child: AutoSizeText('${countryList[countryIndex].capital}',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Theme.of(context).primaryColor,
-                        fontSize: 40,
-                        fontWeight: FontWeight.w700,
-                      )),
-                ),
-                Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      InkWell(
-                        onTap: () {
-                          Navigator.pushReplacementNamed(
-                              context, '/countryCard',
-                              arguments: {
-                                'language': language,
-                                'index':
-                                    countryIndex > 1 ? countryIndex - 1 : 0,
-                                'countryList': countryList
-                              });
-                        },
-                        child: Container(
-                          width: (MediaQuery.of(context).size.width) / 5,
-                          height: MediaQuery.of(context).size.height / 15,
-                          decoration: BoxDecoration(
-                              color: Theme.of(context).accentColor),
-                          child: LayoutBuilder(builder: (context, constraint) {
-                            return new Icon(
-                              Icons.navigate_before,
-                              size: constraint.biggest.height,
-                              color: Colors.black,
-                            );
-                          }),
-                        ),
+          child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
+            Column(mainAxisAlignment: MainAxisAlignment.start, children: [
+              Center(
+                  child: Column(children: [
+                    Container(
+                      color: Theme.of(context).accentColor,
+                      child: Column(
+                        children: [
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Container(
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: AutoSizeText('${countryList[countryIndex].name}',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 30,
+                                    fontWeight: FontWeight.w700,
+                                  )),
+                            ),
+                          ),
+                          Container(
+                            width: MediaQuery.of(context).size.width,
+                            height: MediaQuery.of(context).size.height / 4,
+                            decoration: BoxDecoration(
+                                image: DecorationImage(
+                                    image: AssetImage(
+                                        'assets/images/${countryList[countryIndex].id}.JPG'))),
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Container(
+                            child: AutoSizeText('${countryList[countryIndex].capital}',
+                                style: TextStyle(
+                                  color: Theme.of(context).primaryColor,
+                                  fontSize: 30,
+                                  // fontWeight: FontWeight.w700,
+                                )),
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                        ],
                       ),
-                      InkWell(
-                        onTap: () {
-                          Navigator.pop(context, {});
-                        },
-                        child: Container(
-                          width: (MediaQuery.of(context).size.width) / 5,
-                          height: MediaQuery.of(context).size.height / 15,
-                          decoration: BoxDecoration(
-                              color: Theme.of(context).accentColor),
-                          child: LayoutBuilder(builder: (context, constraint) {
-                            return new Icon(
-                              Icons.clear,
-                              size: constraint.biggest.height,
-                              color: Colors.black,
-                            );
-                          }),
-                        ),
+                    ),
+                    SizedBox(
+                      height: 30,
+                    ),
+
+                  ]))
+            ]),
+            Container(
+              height: MediaQuery.of(context).size.height / 15,
+              child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    InkWell(
+                      onTap: () {
+                        Navigator.pushReplacementNamed(context, '/countryCard',
+                            arguments: {
+                              'language': language,
+                              'index': countryIndex > 1 ? countryIndex - 1 : 0,
+                              'countryList': countryList
+                            });
+                      },
+                      child: Container(
+                        width: (MediaQuery.of(context).size.width) / 5,
+                        child: LayoutBuilder(builder: (context, constraint) {
+                          return new Icon(
+                            Icons.navigate_before,
+                            size: constraint.biggest.height,
+                            color: Colors.white,
+                          );
+                        }),
                       ),
-                      InkWell(
-                        onTap: () {
-                          Navigator.pushReplacementNamed(
-                              context, '/countryCard',
-                              arguments: {
-                                'language': language,
-                                'index': countryIndex < (countryList.length - 2)
-                                    ? countryIndex + 1
-                                    : countryList.length - 1,
-                                'countryList': countryList
-                              });
-                        },
-                        child: Container(
-                          width: (MediaQuery.of(context).size.width) / 5,
-                          height: MediaQuery.of(context).size.height / 15,
-                          decoration: BoxDecoration(
-                              color: Theme.of(context).accentColor),
-                          child: LayoutBuilder(builder: (context, constraint) {
-                            return new Icon(
-                              Icons.navigate_next,
-                              size: constraint.biggest.height,
-                              color: Colors.black,
-                            );
-                          }),
-                        ),
+                    ),
+                    InkWell(
+                      onTap: () {
+                        Navigator.pop(context, {});
+                      },
+                      child: Container(
+                        width: (MediaQuery.of(context).size.width) / 5,
+                        child: LayoutBuilder(builder: (context, constraint) {
+                          return new Icon(
+                            Icons.clear,
+                            size: constraint.biggest.height,
+                            color: Colors.white,
+                          );
+                        }),
                       ),
-                    ]),
-              ]),
+                    ),
+                    InkWell(
+                      onTap: () {
+                        Navigator.pushReplacementNamed(context, '/countryCard',
+                            arguments: {
+                              'language': language,
+                              'index': countryIndex < (countryList.length - 2)
+                                  ? countryIndex + 1
+                                  : countryList.length - 1,
+                              'countryList': countryList
+                            });
+                      },
+                      child: Container(
+                        width: (MediaQuery.of(context).size.width) / 5,
+                        child: LayoutBuilder(builder: (context, constraint) {
+                          return new Icon(
+                            Icons.navigate_next,
+                            size: constraint.biggest.height,
+                            color: Colors.white,
+                          );
+                        }),
+                      ),
+                    ),
+                  ]),
             ),
-          ),
+          ]),
         ));
   }
 }

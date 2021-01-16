@@ -97,47 +97,33 @@ class _QuizzState extends State<Quizz> {
         backgroundColor: Colors.black,
         appBar: AppBar(
           automaticallyImplyLeading: false,
-          // leading: Builder(
-          //   builder: (BuildContext context) {
-          //     return IconButton(
-          //       icon: const Icon(Icons.navigate_before, size: 40),
-          //       onPressed: () {
-          //         Navigator.pop(context, {});
-          //       },
-          //       tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
-          //     );
-          //   },
-          // ),
           backgroundColor: Colors.black,
           title: Container(
-            height: MediaQuery.of(context).size.height / 12,
+            height: MediaQuery.of(context).size.height / 15,
             width: MediaQuery.of(context).size.width,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Container(
-                  alignment: Alignment.center,
-                  child: AutoSizeText('${widget.score} / ${widget.tap}',
-                      style: TextStyle(
-                          color: Theme.of(context).accentColor, fontSize: 30)),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: AutoSizeText('${widget.score} / ${widget.tap}',
+                        style: TextStyle(
+                            color: Theme.of(context).accentColor, fontSize: 30)),
+                  ),
                 ),
                 InkWell(
                   onTap: () {
                     Navigator.pop(context, {});
                   },
                   child: Container(
-                    width: (MediaQuery.of(context).size.width) / 10,
-                    decoration: BoxDecoration(color: Colors.black),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: LayoutBuilder(builder: (context, constraint) {
-                        return Icon(
-                          Icons.clear,
-                          size: constraint.biggest.height,
-                          color: Colors.white,
-                        );
-                      }),
-                    ),
+                    child: LayoutBuilder(builder: (context, constraint) {
+                      return Icon(
+                        Icons.clear,
+                        size: constraint.biggest.height,
+                        color: Colors.white,
+                      );
+                    }),
                   ),
                 ),
               ],
@@ -145,35 +131,38 @@ class _QuizzState extends State<Quizz> {
           ),
         ),
         body: SafeArea(
-            child:
-                Column(mainAxisAlignment: MainAxisAlignment.start, children: [
-          Container(
-              child: Center(
-                  child: Column(children: [
-            SizedBox(height: 5),
+            child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
+          Center(
+              child: Column(children: [
             Container(
               color: Theme.of(context).accentColor,
               child: Column(
                 children: [
-                  Container(
-                    child: AutoSizeText('$country',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 30,
-                          fontWeight: FontWeight.w700,
-                        )),
+                  SizedBox(
+                    height: 10,
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(5.0),
-                    child: Container(
-                      width: MediaQuery.of(context).size.width,
-                      height: MediaQuery.of(context).size.height / 4,
-                      decoration: BoxDecoration(
-                          image: DecorationImage(
-                              image: AssetImage(
-                                  'assets/images/${widget.data[randomIndex].id}.JPG'))),
+                  Container(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: AutoSizeText('$country',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 30,
+                            fontWeight: FontWeight.w700,
+                          )),
                     ),
+                  ),
+                  Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.height / 4,
+                    decoration: BoxDecoration(
+                        image: DecorationImage(
+                            image: AssetImage(
+                                'assets/images/${widget.data[randomIndex].id}.JPG'))),
+                  ),
+                  SizedBox(
+                    height: 10,
                   ),
                   Container(
                     child: AutoSizeText('$capital',
@@ -183,17 +172,21 @@ class _QuizzState extends State<Quizz> {
                           // fontWeight: FontWeight.w700,
                         )),
                   ),
+                  SizedBox(
+                    height: 10,
+                  ),
                 ],
               ),
             ),
             SizedBox(
-              height: MediaQuery.of(context).size.height / 30,
+              height: 20,
             ),
             Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Container(
                   width: MediaQuery.of(context).size.width,
+                  height: MediaQuery.of(context).size.height / 15,
                   child: RaisedButton(
                       color: Theme.of(context).accentColor,
                       child: Center(
@@ -212,10 +205,11 @@ class _QuizzState extends State<Quizz> {
                       }),
                 ),
                 SizedBox(
-                  height: MediaQuery.of(context).size.height / 100,
+                  height: 10,
                 ),
                 Container(
                   width: MediaQuery.of(context).size.width,
+                  height: MediaQuery.of(context).size.height / 15,
                   child: RaisedButton(
                       color: Theme.of(context).accentColor,
                       child: Center(
@@ -234,10 +228,11 @@ class _QuizzState extends State<Quizz> {
                       }),
                 ),
                 SizedBox(
-                  height: MediaQuery.of(context).size.height / 100,
+                  height: 10,
                 ),
                 Container(
                   width: MediaQuery.of(context).size.width,
+                  height: MediaQuery.of(context).size.height / 15,
                   child: RaisedButton(
                       color: Theme.of(context).accentColor,
                       child: Center(
@@ -256,10 +251,11 @@ class _QuizzState extends State<Quizz> {
                       }),
                 ),
                 SizedBox(
-                  height: MediaQuery.of(context).size.height / 100,
+                  height: 10,
                 ),
                 Container(
                   width: MediaQuery.of(context).size.width,
+                  height: MediaQuery.of(context).size.height / 15,
                   child: RaisedButton(
                       color: Theme.of(context).accentColor,
                       child: Center(
@@ -279,7 +275,8 @@ class _QuizzState extends State<Quizz> {
                 ),
               ],
             )
-          ])))
-        ])));
+          ]))
+        ])
+        ));
   }
 }

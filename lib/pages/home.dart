@@ -1403,7 +1403,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  String language = 'fr';
+  String language = 'en';
   List<C> data;
 
   @override
@@ -1418,189 +1418,166 @@ class _HomeState extends State<Home> {
 
     return Scaffold(
       backgroundColor: Colors.black,
-      // appBar: AppBar(
-      //   backgroundColor: Colors.black,
-      //   title: Container(
-      //     alignment: Alignment.center,
-      //     child: AutoSizeText('© Shchegolev 2021, shchnad@gmail.com',
-      //         style: TextStyle(
-      //             color: Colors.white, fontSize: 20)),
-      //   ),
-      // ),
       body: SafeArea(
-        child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-          Container(
-            child: AutoSizeText(
-              'GeographY',
-              style: TextStyle(
-                  color: Colors.white, fontSize: 50, fontFamily: 'RockSalt'),
+        child: Container(
+          decoration: BoxDecoration(image: DecorationImage(
+              image: AssetImage("assets/images/world.jpg"),
+              fit: BoxFit.cover,
             ),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                width: (MediaQuery.of(context).size.width) / 2.21,
-                height: MediaQuery.of(context).size.height / 9,
-                decoration: BoxDecoration(color: Theme.of(context).accentColor),
-                padding: EdgeInsets.all(8.0),
-                child: Center(
+          child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
+            SizedBox(height: MediaQuery.of(context).size.height / 4.3,),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  width: (MediaQuery.of(context).size.width) / 3.5,
+                  height: MediaQuery.of(context).size.height / 9,
+                  decoration: BoxDecoration(color: Theme.of(context).accentColor, borderRadius: BorderRadius.all(Radius.circular(20))),
+                  padding: EdgeInsets.all(8.0),
                   child: FittedBox(
                     fit: BoxFit.fitWidth,
-                    child: DropdownButton(
-                        dropdownColor: Theme.of(context).accentColor,
-                        style: TextStyle(
-                          fontSize: 40,
+                    child:
+                          DropdownButtonHideUnderline(
+                            child: DropdownButton(
+                                dropdownColor: Theme.of(context).accentColor,
+                                style: TextStyle(
+                                  fontSize: 30, color: Colors.black,
+                                  fontWeight: FontWeight.w700,
+                                ),
+                                value: language,
+                                items: [
+                                 DropdownMenuItem(
+                                      child: AutoSizeText('English'), value: 'en'),
+                                  DropdownMenuItem(
+                                      child: AutoSizeText('Français'), value: 'fr'),
+                                  DropdownMenuItem(
+                                      child: AutoSizeText('Deutsch'), value: 'de'),
+                                  DropdownMenuItem(
+                                      child: AutoSizeText('Español'), value: 'es'),
+                                  DropdownMenuItem(
+                                      child: AutoSizeText('Italiano'), value: 'it'),
+                                  DropdownMenuItem(
+                                      child: AutoSizeText('Português'), value: 'pt'),
+                                  DropdownMenuItem(
+                                      child: AutoSizeText('Русский'), value: 'ru'),
+                                ],
+                                onChanged: (value) {
+                                  setState(() {
+                                    language = value;
+                                  });
+                                }),
+                          ),
+
+                    //
+                  ),
+                ),
+                SizedBox(
+                  width: 10,
+                ),
+                InkWell(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                Countries(data: data, language: language)));
+                  },
+                  child: Container(
+                    width: (MediaQuery.of(context).size.width) / 3.5,
+                    height: MediaQuery.of(context).size.height / 9,
+                    decoration:
+                        BoxDecoration(color: Theme.of(context).accentColor, borderRadius: BorderRadius.all(Radius.circular(20))),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: LayoutBuilder(builder: (context, constraint) {
+                        return Icon(
+                          Icons.school,
+                          size: constraint.biggest.height,
                           color: Colors.black,
-                          fontWeight: FontWeight.w700,
-                          // backgroundColor: Theme.of(context).accentColor,
-                        ),
-                        value: language,
-                        icon: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          // child: Container(
-                          //   child: LayoutBuilder(builder: (context, constraint) {
-                          //     return Icon(
-                          //       Icons.language,
-                          //       size: constraint.biggest.height,
-                          //       color: Colors.black,
-                          //     );
-                          //   }),
-                          // ),
-                        ),
-                        items: [
-                          DropdownMenuItem(
-                              child: AutoSizeText(
-                                'Français',
-                              ),
-                              value: 'fr'),
-                          DropdownMenuItem(
-                              child: AutoSizeText('English'), value: 'en'),
-                          DropdownMenuItem(
-                              child: AutoSizeText('Deutsch'), value: 'de'),
-                          DropdownMenuItem(
-                              child: AutoSizeText('Español'), value: 'es'),
-                          DropdownMenuItem(
-                              child: AutoSizeText('Italiano'), value: 'it'),
-                          DropdownMenuItem(
-                              child: AutoSizeText('Português'), value: 'pt'),
-                          DropdownMenuItem(
-                              child: AutoSizeText('Русский'), value: 'ru'),
-                        ],
-                        onChanged: (value) {
-                          setState(() {
-                            language = value;
-                          });
-                        }),
+                        );
+                      }),
+                    ),
                   ),
                 ),
-              ),
-              SizedBox(
-                width: 10,
-              ),
-              InkWell(
-                onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) =>
-                              Countries(data: data, language: language)));
-                },
-                child: Container(
-                  width: (MediaQuery.of(context).size.width) / 2.21,
-                  height: MediaQuery.of(context).size.height / 9,
-                  decoration:
-                      BoxDecoration(color: Theme.of(context).accentColor),
-                  child: Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: LayoutBuilder(builder: (context, constraint) {
-                      return new Icon(
-                        Icons.school,
-                        size: constraint.biggest.height,
-                        color: Colors.black,
-                      );
-                    }),
+
+              ],
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                InkWell(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => Quizz(
+                                data: data,
+                                quizzType: 'capital',
+                                language: language)));
+                  },
+                  child: Container(
+                    width: (MediaQuery.of(context).size.width) / 3.5,
+                    height: MediaQuery.of(context).size.height / 9,
+                    decoration: BoxDecoration(color: Theme.of(context).accentColor, borderRadius: BorderRadius.all(Radius.circular(20))),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: LayoutBuilder(builder: (context, constraint) {
+                        return Icon(
+                          Icons.emoji_transportation,
+                          size: constraint.biggest.height,
+                          color: Colors.black,
+                        );
+                      }),
+                    ),
                   ),
                 ),
-              ),
-            ],
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          Container(
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height / 2.73,
-            decoration: BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage('assets/images/world.jpg'))),
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              InkWell(
-                onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => Quizz(
-                              data: data,
-                              quizzType: 'capital',
-                              language: language)));
-                },
-                child: Container(
-                  width: (MediaQuery.of(context).size.width) / 2.21,
-                  height: MediaQuery.of(context).size.height / 9,
-                  decoration:
-                      BoxDecoration(color: Theme.of(context).accentColor),
-                  child: Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: LayoutBuilder(builder: (context, constraint) {
-                      return new Icon(
-                        Icons.emoji_transportation,
-                        size: constraint.biggest.height,
-                        color: Colors.black,
-                      );
-                    }),
+                SizedBox(
+                  width: 10,
+                ),
+                InkWell(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => Quizz(
+                                data: data,
+                                quizzType: 'flag',
+                                language: language)));
+                  },
+                  child: Container(
+                    width: (MediaQuery.of(context).size.width) / 3.5,
+                    height: MediaQuery.of(context).size.height / 9,
+                    decoration:
+                        BoxDecoration(color: Theme.of(context).accentColor, borderRadius: BorderRadius.all(Radius.circular(20))),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: LayoutBuilder(builder: (context, constraint) {
+                        return Icon(
+                          Icons.emoji_flags,
+                          size: constraint.biggest.height,
+                          color: Colors.black,
+                        );
+                      }),
+                    ),
                   ),
                 ),
-              ),
-              SizedBox(
-                width: 10,
-              ),
-              InkWell(
-                onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => Quizz(
-                              data: data,
-                              quizzType: 'flag',
-                              language: language)));
-                },
-                child: Container(
-                  width: (MediaQuery.of(context).size.width) / 2.21,
-                  height: MediaQuery.of(context).size.height / 9,
-                  decoration:
-                      BoxDecoration(color: Theme.of(context).accentColor),
-                  child: Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: LayoutBuilder(builder: (context, constraint) {
-                      return new Icon(
-                        Icons.emoji_flags,
-                        size: constraint.biggest.height,
-                        color: Colors.black,
-                      );
-                    }),
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ]),
+              ],
+            ),
+            // Container(
+            //   alignment: Alignment.bottomCenter,
+            //   height: MediaQuery.of(context).size.height / 3.5,
+            //   child: AutoSizeText(
+            //     'GeoTest',
+            //     style: TextStyle(
+            //         color: Colors.black, fontSize: 100, fontFamily: 'RockSalt'),
+            //   ),
+            // ),
+          ]),
+        ),
       ),
     );
   }

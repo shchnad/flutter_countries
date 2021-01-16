@@ -16,6 +16,7 @@ class Countries extends StatefulWidget {
 class _CountriesState extends State<Countries> {
   String continent;
   List continentsList;
+  String world;
 
   void openCountryCard(index, countryList) {
     Navigator.pushNamed(context, '/countryCard', arguments: {
@@ -25,9 +26,21 @@ class _CountriesState extends State<Countries> {
     });
   }
 
+  void showAll(language) {
+    // world = '..........';
+    if (language == 'en') world = 'whole world';
+    if (language == 'fr') world = 'monde entier';
+    if (language == 'de') world = 'ganze Welt';
+    if (language == 'es') world = 'mundo entero';
+    if (language == 'it') world = 'il mondo intero';
+    if (language == 'pt') world = 'mundo inteiro';
+    if (language == 'ru') world = 'весь мир';
+  }
+
   @override
   Widget build(BuildContext context) {
-    continentsList = ['...'];
+    showAll(widget.language);
+    continentsList = [world];
     widget.data.forEach((element) {
       if (!continentsList.contains(element.continent)) {
         continentsList.add(element.continent);
@@ -40,55 +53,32 @@ class _CountriesState extends State<Countries> {
 
     widget.data.forEach((element) {
       if (continent == null ||
-          continent == '...' ||
+          continent == world ||
           element.continent == continent) {
         countriesList.add(element);
       }
     });
 
     return Scaffold(
-        backgroundColor: Colors.black,
+    backgroundColor: Colors.black,
         appBar: AppBar(
-          automaticallyImplyLeading: false,
-          // leading: Builder(
-          //   builder: (BuildContext context) {
-          //     return IconButton(
-          //       icon: const Icon(Icons.navigate_before, size: 40),
-          //       onPressed: () {
-          //         Navigator.pop(context, {});
-          //       },
-          //       tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
-          //     );
-          //   },
-          // ),
           backgroundColor: Colors.black,
+          automaticallyImplyLeading: false,
           title: Container(
-            height: MediaQuery.of(context).size.height / 12,
+            height: MediaQuery.of(context).size.height / 15,
             width: MediaQuery.of(context).size.width,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 DropdownButtonHideUnderline(
                   child: DropdownButton(
-                    hint: AutoSizeText(
-                      '...',
-                      style: TextStyle(color: Colors.white, fontSize: 20),
-                    ),
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 20,
-                    ),
-                    icon: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Container(
-                        width: (MediaQuery.of(context).size.width) / 24,
-                        height: MediaQuery.of(context).size.height / 15,
-                        // child: LayoutBuilder(builder: (context, constraint) {
-                        //   return Icon(Icons.public, size: constraint.biggest.height, color: Colors.white,);
-                        // }),
-                      ),
-                    ),
+
                     dropdownColor: Colors.black,
+                    style: TextStyle(color: Colors.white, fontSize: 20,),
+                    hint: Container(
+                      child: LayoutBuilder(builder: (context, constraint) {
+                        return Icon(Icons.public, size: constraint.biggest.height);
+                    }),),
                     items: <String>[
                       '${continentsList[0]}',
                       '${continentsList[1]}',
@@ -118,18 +108,13 @@ class _CountriesState extends State<Countries> {
                     Navigator.pop(context, {});
                   },
                   child: Container(
-                    width: (MediaQuery.of(context).size.width) / 10,
-                    decoration: BoxDecoration(color: Colors.black),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: LayoutBuilder(builder: (context, constraint) {
-                        return Icon(
-                          Icons.clear,
-                          size: constraint.biggest.height,
-                          color: Colors.white,
-                        );
-                      }),
-                    ),
+                    child: LayoutBuilder(builder: (context, constraint) {
+                      return Icon(
+                        Icons.clear,
+                        size: constraint.biggest.height,
+                        color: Colors.white,
+                      );
+                    }),
                   ),
                 ),
               ],
@@ -138,7 +123,7 @@ class _CountriesState extends State<Countries> {
         ),
         body: SafeArea(
           child: Padding(
-            padding: const EdgeInsets.all(10),
+            padding: const EdgeInsets.all(8.0),
             child: Container(
               child: ListView.builder(
                   itemCount: countriesList.length,
