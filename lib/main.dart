@@ -5,8 +5,8 @@ import 'package:flutter_countries/pages/countryCard.dart';
 
 void main() => runApp(MaterialApp(
         theme: ThemeData(
-          primaryColor: Colors.blue[700],
-          accentColor: Colors.grey[300],
+          primaryColor: Colors.black,
+          accentColor: Colors.grey[100],
         ),
         initialRoute: '/',
         routes: {

@@ -11,9 +11,23 @@ class CountryLine extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: Colors.grey[300],
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
+      child: Container(
+        decoration: BoxDecoration(
+          color: Theme.of(context).accentColor,
+          borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(10),
+              topRight: Radius.circular(10),
+              bottomLeft: Radius.circular(10),
+              bottomRight: Radius.circular(10)
+          ),
+          boxShadow: [
+          BoxShadow(
+          color: Colors.grey.withOpacity(0.3),
+          spreadRadius: 5,
+          blurRadius: 7,
+          offset: Offset(0, 3), // changes position of shadow
+        )],
+        ),
         child: InkWell(
           onTap: openCountryCard,
           child: Row(
@@ -21,19 +35,23 @@ class CountryLine extends StatelessWidget {
             children: [
               Container(
                 width: MediaQuery.of(context).size.width / 2.7,
-                child: AutoSizeText(
-                  countryInList.name,
-                  style: TextStyle(
-                      fontSize: 20,
-                      color: Colors.black,
-                      fontWeight: FontWeight.w700),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: AutoSizeText(
+                    countryInList.name,
+                    style: TextStyle(
+                      fontSize: 18,
+                      color: Theme.of(context).primaryColor,
+                      // fontWeight: FontWeight.w700
+                    ),
+                  ),
                 ),
               ),
               Container(
                 height: MediaQuery.of(context).size.height / 15,
-                width: MediaQuery.of(context).size.width / 10,
+                width: MediaQuery.of(context).size.width / 9,
                 decoration: BoxDecoration(
-                    image: DecorationImage(
+                  image: DecorationImage(
                         image: AssetImage(
                             'assets/images/${countryInList.id}.JPG'))),
               ),
@@ -41,13 +59,17 @@ class CountryLine extends StatelessWidget {
                 width: MediaQuery.of(context).size.width / 35,
               ),
               Container(
-                width: MediaQuery.of(context).size.width / 3,
-                child: AutoSizeText(
-                  countryInList.capital,
-                  style: TextStyle(
+                width: MediaQuery.of(context).size.width / 2.6,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: AutoSizeText(
+                    countryInList.capital,
+                    style: TextStyle(
                       fontSize: 18,
-                      color: Theme.of(context).primaryColor,
-                      fontWeight: FontWeight.w700),
+                      color: Colors.red,
+                      // fontWeight: FontWeight.w700
+                    ),
+                  ),
                 ),
               ),
             ],

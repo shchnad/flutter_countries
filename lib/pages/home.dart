@@ -1359,7 +1359,7 @@ class Home extends StatefulWidget {
     C(172, 'Сан-Томе и Принсипи', 'Океания', 'Сан-Томе'),
     C(80, 'Сенегал', 'Африка', 'Дакар'),
     C(70, 'Сербия', 'Европа', 'Белград'),
-    C(180, 'Сейшелыские острова', 'Океания', 'Виктория'),
+    C(180, 'Сейшельские острова', 'Океания', 'Виктория'),
     C(78, 'Сьерра-Леоне', 'Африка', 'Фритаун'),
     C(16, 'Сингапур', 'Азия', 'Сингапур'),
     C(132, 'Словакия', 'Европа', 'Братислава'),
@@ -1417,63 +1417,97 @@ class _HomeState extends State<Home> {
     if (language == 'ru') data = widget.dataRu;
 
     return Scaffold(
-      backgroundColor: Colors.black,
+      // backgroundColor: Colors.black,
       body: SafeArea(
         child: Container(
-          decoration: BoxDecoration(image: DecorationImage(
-              image: AssetImage("assets/images/world.jpg"),
-              fit: BoxFit.cover,
-            ),
-          ),
           child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
-            SizedBox(height: MediaQuery.of(context).size.height / 4.3,),
+            Container(
+              height: MediaQuery.of(context).size.height / 5,
+              width: MediaQuery.of(context).size.width - 60,
+              child: Center(
+                child: AutoSizeText(
+                  'GéographE',
+                  style: TextStyle(
+                      color: Colors.black, fontFamily: 'RockSalt', fontSize: 60),
+                ),
+              ),
+            ),
+            Container(
+              height: MediaQuery.of(context).size.height / 3,
+              width: MediaQuery.of(context).size.width - 20,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage("assets/images/world.jpg"),
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ),
+            SizedBox(height: 30),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(
-                  width: (MediaQuery.of(context).size.width) / 3.5,
+                  width: (MediaQuery.of(context).size.width) / 3,
                   height: MediaQuery.of(context).size.height / 9,
-                  decoration: BoxDecoration(color: Theme.of(context).accentColor, borderRadius: BorderRadius.all(Radius.circular(20))),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(10),
+                        topRight: Radius.circular(10),
+                        bottomLeft: Radius.circular(10),
+                        bottomRight: Radius.circular(10)),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey,
+                        spreadRadius: 5,
+                        blurRadius: 7,
+                        offset: Offset(0, 3), // changes position of shadow
+                      ),
+                    ],
+                    color: Theme.of(context).accentColor,
+                    // borderRadius: BorderRadius.all(Radius.circular(50))
+                  ),
                   padding: EdgeInsets.all(8.0),
-                  child: FittedBox(
-                    fit: BoxFit.fitWidth,
-                    child:
-                          DropdownButtonHideUnderline(
-                            child: DropdownButton(
-                                dropdownColor: Theme.of(context).accentColor,
-                                style: TextStyle(
-                                  fontSize: 30, color: Colors.black,
-                                  fontWeight: FontWeight.w700,
-                                ),
-                                value: language,
-                                items: [
-                                 DropdownMenuItem(
-                                      child: AutoSizeText('English'), value: 'en'),
-                                  DropdownMenuItem(
-                                      child: AutoSizeText('Français'), value: 'fr'),
-                                  DropdownMenuItem(
-                                      child: AutoSizeText('Deutsch'), value: 'de'),
-                                  DropdownMenuItem(
-                                      child: AutoSizeText('Español'), value: 'es'),
-                                  DropdownMenuItem(
-                                      child: AutoSizeText('Italiano'), value: 'it'),
-                                  DropdownMenuItem(
-                                      child: AutoSizeText('Português'), value: 'pt'),
-                                  DropdownMenuItem(
-                                      child: AutoSizeText('Русский'), value: 'ru'),
-                                ],
-                                onChanged: (value) {
-                                  setState(() {
-                                    language = value;
-                                  });
-                                }),
-                          ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: FittedBox(
+                      fit: BoxFit.fitWidth,
+                      child: DropdownButtonHideUnderline(
+                        child: DropdownButton(
+                            style: TextStyle(
+                              fontSize: 30,
+                              color: Colors.black,
+                              // fontWeight: FontWeight.w700,
+                            ),
+                            value: language,
+                            items: [
+                              DropdownMenuItem(
+                                  child: AutoSizeText('English'), value: 'en'),
+                              DropdownMenuItem(
+                                  child: AutoSizeText('Français'), value: 'fr'),
+                              DropdownMenuItem(
+                                  child: AutoSizeText('Deutsch'), value: 'de'),
+                              DropdownMenuItem(
+                                  child: AutoSizeText('Español'), value: 'es'),
+                              DropdownMenuItem(
+                                  child: AutoSizeText('Italiano'), value: 'it'),
+                              DropdownMenuItem(
+                                  child: AutoSizeText('Português'), value: 'pt'),
+                              DropdownMenuItem(
+                                  child: AutoSizeText('Русский'), value: 'ru'),
+                            ],
+                            onChanged: (value) {
+                              setState(() {
+                                language = value;
+                              });
+                            }),
+                      ),
 
-                    //
+                      //
+                    ),
                   ),
                 ),
                 SizedBox(
-                  width: 10,
+                  width: 40,
                 ),
                 InkWell(
                   onTap: () {
@@ -1484,10 +1518,25 @@ class _HomeState extends State<Home> {
                                 Countries(data: data, language: language)));
                   },
                   child: Container(
-                    width: (MediaQuery.of(context).size.width) / 3.5,
+                    width: (MediaQuery.of(context).size.width) / 3,
                     height: MediaQuery.of(context).size.height / 9,
-                    decoration:
-                        BoxDecoration(color: Theme.of(context).accentColor, borderRadius: BorderRadius.all(Radius.circular(20))),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(10),
+                          topRight: Radius.circular(10),
+                          bottomLeft: Radius.circular(10),
+                          bottomRight: Radius.circular(10)),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey,
+                          spreadRadius: 5,
+                          blurRadius: 7,
+                          offset: Offset(0, 3), // changes position of shadow
+                        ),
+                      ],
+                      color: Theme.of(context).accentColor,
+                      // borderRadius: BorderRadius.all(Radius.circular(20))
+                    ),
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: LayoutBuilder(builder: (context, constraint) {
@@ -1500,11 +1549,10 @@ class _HomeState extends State<Home> {
                     ),
                   ),
                 ),
-
               ],
             ),
             SizedBox(
-              height: 10,
+              height: 40,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -1520,9 +1568,25 @@ class _HomeState extends State<Home> {
                                 language: language)));
                   },
                   child: Container(
-                    width: (MediaQuery.of(context).size.width) / 3.5,
+                    width: (MediaQuery.of(context).size.width) / 3,
                     height: MediaQuery.of(context).size.height / 9,
-                    decoration: BoxDecoration(color: Theme.of(context).accentColor, borderRadius: BorderRadius.all(Radius.circular(20))),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(10),
+                          topRight: Radius.circular(10),
+                          bottomLeft: Radius.circular(10),
+                          bottomRight: Radius.circular(10)),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey,
+                          spreadRadius: 5,
+                          blurRadius: 7,
+                          offset: Offset(0, 3), // changes position of shadow
+                        ),
+                      ],
+                      color: Theme.of(context).accentColor,
+                      // borderRadius: BorderRadius.all(Radius.circular(20))
+                    ),
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: LayoutBuilder(builder: (context, constraint) {
@@ -1536,7 +1600,7 @@ class _HomeState extends State<Home> {
                   ),
                 ),
                 SizedBox(
-                  width: 10,
+                  width: 40,
                 ),
                 InkWell(
                   onTap: () {
@@ -1549,10 +1613,25 @@ class _HomeState extends State<Home> {
                                 language: language)));
                   },
                   child: Container(
-                    width: (MediaQuery.of(context).size.width) / 3.5,
+                    width: (MediaQuery.of(context).size.width) / 3,
                     height: MediaQuery.of(context).size.height / 9,
-                    decoration:
-                        BoxDecoration(color: Theme.of(context).accentColor, borderRadius: BorderRadius.all(Radius.circular(20))),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(10),
+                          topRight: Radius.circular(10),
+                          bottomLeft: Radius.circular(10),
+                          bottomRight: Radius.circular(10)),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey,
+                          spreadRadius: 5,
+                          blurRadius: 7,
+                          offset: Offset(0, 3), // changes position of shadow
+                        ),
+                      ],
+                      color: Theme.of(context).accentColor,
+                      // borderRadius: BorderRadius.all(Radius.circular(20))
+                    ),
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: LayoutBuilder(builder: (context, constraint) {
@@ -1567,15 +1646,6 @@ class _HomeState extends State<Home> {
                 ),
               ],
             ),
-            // Container(
-            //   alignment: Alignment.bottomCenter,
-            //   height: MediaQuery.of(context).size.height / 3.5,
-            //   child: AutoSizeText(
-            //     'GeoTest',
-            //     style: TextStyle(
-            //         color: Colors.black, fontSize: 100, fontFamily: 'RockSalt'),
-            //   ),
-            // ),
           ]),
         ),
       ),

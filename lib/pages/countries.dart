@@ -60,9 +60,9 @@ class _CountriesState extends State<Countries> {
     });
 
     return Scaffold(
-    backgroundColor: Colors.black,
+        // backgroundColor: Colors.black,
         appBar: AppBar(
-          backgroundColor: Colors.black,
+          backgroundColor: Theme.of(context).accentColor,
           automaticallyImplyLeading: false,
           title: Container(
             height: MediaQuery.of(context).size.height / 15,
@@ -72,13 +72,21 @@ class _CountriesState extends State<Countries> {
               children: [
                 DropdownButtonHideUnderline(
                   child: DropdownButton(
-
-                    dropdownColor: Colors.black,
-                    style: TextStyle(color: Colors.white, fontSize: 20,),
+                    dropdownColor: Theme.of(context).accentColor,
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 20,
+                    ),
                     hint: Container(
                       child: LayoutBuilder(builder: (context, constraint) {
-                        return Icon(Icons.public, size: constraint.biggest.height);
-                    }),),
+                        return Icon(
+                          Icons.public,
+                          color: Colors.black,
+                          // size: constraint.biggest.height,
+                          size: 30,
+                        );
+                      }),
+                    ),
                     items: <String>[
                       '${continentsList[0]}',
                       '${continentsList[1]}',
@@ -111,8 +119,9 @@ class _CountriesState extends State<Countries> {
                     child: LayoutBuilder(builder: (context, constraint) {
                       return Icon(
                         Icons.clear,
-                        size: constraint.biggest.height,
-                        color: Colors.white,
+                        // size: constraint.biggest.height,
+                        size: 30,
+                        color: Colors.black,
                       );
                     }),
                   ),

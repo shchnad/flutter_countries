@@ -34,10 +34,10 @@ class _CountryCardState extends State<CountryCard> {
         'https://$language.wikipedia.org/wiki/${countryList[countryIndex].name}';
 
     return Scaffold(
-        backgroundColor: Colors.black,
+        // backgroundColor: Colors.black,
         appBar: AppBar(
           automaticallyImplyLeading: false,
-          backgroundColor: Colors.black,
+          backgroundColor: Theme.of(context).accentColor,
           title: Center(
             child: Container(
               height: MediaQuery.of(context).size.height / 15,
@@ -52,6 +52,7 @@ class _CountryCardState extends State<CountryCard> {
                           AutoSizeText('${countryList[countryIndex].continent}',
                               style: TextStyle(
                                 fontSize: 30,
+                                color: Colors.black,
                               )),
                     ),
                   ),
@@ -61,16 +62,14 @@ class _CountryCardState extends State<CountryCard> {
                     },
                     child: Container(
                       width: (MediaQuery.of(context).size.width) / 8,
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: LayoutBuilder(builder: (context, constraint) {
-                          return Icon(
-                            Icons.search,
-                            size: constraint.biggest.height,
-                            color: Colors.white,
-                          );
-                        }),
-                      ),
+                      child: LayoutBuilder(builder: (context, constraint) {
+                        return Icon(
+                          Icons.search,
+                          // size: constraint.biggest.height,
+                          size: 30,
+                          color: Colors.black,
+                        );
+                      }),
                     ),
                   ),
                 ],
@@ -83,55 +82,76 @@ class _CountryCardState extends State<CountryCard> {
             Column(mainAxisAlignment: MainAxisAlignment.start, children: [
               Center(
                   child: Column(children: [
-                    Container(
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    decoration: BoxDecoration(
                       color: Theme.of(context).accentColor,
-                      child: Column(
-                        children: [
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Container(
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: AutoSizeText('${countryList[countryIndex].name}',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 30,
-                                    fontWeight: FontWeight.w700,
-                                  )),
-                            ),
-                          ),
-                          Container(
-                            width: MediaQuery.of(context).size.width,
-                            height: MediaQuery.of(context).size.height / 4,
-                            decoration: BoxDecoration(
-                                image: DecorationImage(
-                                    image: AssetImage(
-                                        'assets/images/${countryList[countryIndex].id}.JPG'))),
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Container(
-                            child: AutoSizeText('${countryList[countryIndex].capital}',
+                      borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(10),
+                          topRight: Radius.circular(10),
+                          bottomLeft: Radius.circular(10),
+                          bottomRight: Radius.circular(10)
+                      ),
+                      boxShadow: [
+                      BoxShadow(
+                      color: Colors.grey,
+                      spreadRadius: 5,
+                      blurRadius: 7,
+                      offset: Offset(0, 3), // changes position of shadow
+                    ),
+
+                      ],
+                    ),
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Container(
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: AutoSizeText(
+                                '${countryList[countryIndex].name}',
+                                textAlign: TextAlign.center,
                                 style: TextStyle(
                                   color: Theme.of(context).primaryColor,
                                   fontSize: 30,
                                   // fontWeight: FontWeight.w700,
                                 )),
                           ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                        ],
-                      ),
+                        ),
+                        Container(
+                          width: MediaQuery.of(context).size.width,
+                          height: MediaQuery.of(context).size.height / 4,
+                          decoration: BoxDecoration(
+                              image: DecorationImage(
+                                  image: AssetImage(
+                                      'assets/images/${countryList[countryIndex].id}.JPG'))),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Container(
+                          child: AutoSizeText(
+                              '${countryList[countryIndex].capital}',
+                              style: TextStyle(
+                                color: Colors.red,
+                                fontSize: 30,
+                                // fontWeight: FontWeight.w700,
+                              )),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                      ],
                     ),
-                    SizedBox(
-                      height: 30,
-                    ),
-
-                  ]))
+                  ),
+                ),
+                SizedBox(
+                  height: 100,
+                ),
+              ]))
             ]),
             Container(
               height: MediaQuery.of(context).size.height / 15,
@@ -152,8 +172,9 @@ class _CountryCardState extends State<CountryCard> {
                         child: LayoutBuilder(builder: (context, constraint) {
                           return new Icon(
                             Icons.navigate_before,
-                            size: constraint.biggest.height,
-                            color: Colors.white,
+                            // size: constraint.biggest.height,
+                            size: 30,
+                            // color: Colors.white,
                           );
                         }),
                       ),
@@ -167,8 +188,9 @@ class _CountryCardState extends State<CountryCard> {
                         child: LayoutBuilder(builder: (context, constraint) {
                           return new Icon(
                             Icons.clear,
-                            size: constraint.biggest.height,
-                            color: Colors.white,
+                            // size: constraint.biggest.height,
+                            size: 30,
+                            // color: Colors.white,
                           );
                         }),
                       ),
@@ -189,8 +211,9 @@ class _CountryCardState extends State<CountryCard> {
                         child: LayoutBuilder(builder: (context, constraint) {
                           return new Icon(
                             Icons.navigate_next,
-                            size: constraint.biggest.height,
-                            color: Colors.white,
+                            // size: constraint.biggest.height,
+                            size: 30,
+                            // color: Colors.white,
                           );
                         }),
                       ),
